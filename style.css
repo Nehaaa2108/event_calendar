@@ -1,0 +1,212 @@
+/* ---------- Page / Background ---------- */
+body{
+  margin:0;
+  padding:0;
+  /* Replace with your image path */
+  background:url("bg_image.png") no-repeat center center fixed;
+  background-size:cover;
+  font-family:'Nata Sans',sans-serif;
+  color:#194f84a5;
+}
+
+/* ---------- Heading improvements ---------- */
+.nata-sans-header{ font-weight:700; }
+
+.event-heading {
+  letter-spacing: 2px;
+  font-size: 2.6rem;
+  padding: 1.5rem 0 1rem 0;
+  text-align: center;
+  color: #154D71;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);  /* NEW */
+}
+
+/* ---------- Card ---------- */
+.calendar-container{
+  display:flex;
+  justify-content:center;
+  padding:0 14px 44px 14px;
+}
+
+.calendar-card{
+  background:#FFF;
+  border-radius:20px;
+  box-shadow:0 18px 45px rgba(0,0,0,.18); /* low-opacity shadow */
+  padding:2rem 1.8rem;
+  width:100%;
+  max-width:420px;
+}
+
+/* ---------- Header row ---------- */
+.calendar-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+  color:#154D71;
+  font-size:1.35rem;
+}
+.calendar-header button{
+  background:none;
+  border:none;
+  color:#154D71;
+  font-size:1.3rem;
+  font-weight:800;
+  cursor:pointer;
+  border-radius:50%;
+  transition:background .18s;
+  width:36px; height:36px;
+}
+.calendar-header button:hover{ background:#F3E2D4; }
+
+/* ---------- Calendar grid ---------- */
+.calendar-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:6px;
+  font-size:1rem;
+}
+.calendar-table th{
+  text-align:center;
+  font-weight:600;
+  color:#E3A678;
+}
+.calendar-table td{
+  text-align:center;
+  width:46px;
+  height:36px;
+  line-height:36px;
+  font-weight:500;
+  color:#154D71;
+  border-radius:18px;           /* OVAL (not circle) */
+  cursor:pointer;
+  transition:background .13s, color .13s, border .13s;
+  vertical-align:middle;
+}
+.calendar-table td.empty{
+  background:none;
+  border:none;
+  cursor:default;
+  border-radius:0;
+}
+.calendar-table td:hover:not(.empty):not(.disabled){
+  background:#F3E2D4;
+}
+
+/* Today (blue background) */
+.today{
+  background:#8bbdee;
+  color:#fff;                  /* today default: white text */
+  border-radius:18px;          /* keep oval look */
+  font-weight:700;
+}
+
+/* Event days use warm highlight and DARK text */
+.event-day{
+  background:rgba(227,166,120,.25);
+  border:2px solid #E3A678;
+  font-weight:700;
+  border-radius:18px;
+  color:#154D71 !important;      /* never turn white */
+}
+/* If a day is BOTH today + event, keep dark text and show a blue outline */
+.event-day.today{
+  background:rgba(227,166,120,.25);
+  border:2px solid #007bff;
+  color:#154D71 !important;      /* override white from .today */
+}
+
+/* Disabled days (if you ever add them) */
+.disabled{
+  background:#f5f5f5;
+  color:#ccc;
+  cursor:not-allowed;
+  pointer-events:none;
+}
+
+/* ---------- Buttons / Inputs ---------- */
+.add-event-btn{
+  display:block;
+  margin:18px auto 10px auto;
+  padding:12px 32px;
+  background:#154D71;
+  color:#fff;
+  border:none;
+  border-radius:18px;
+  font-weight:800;
+  cursor:pointer;
+}
+.add-event-btn:hover{ background:#E3A678; color:#154D71; }
+
+.nata-sans-input{
+  font-size:1rem;
+  padding:9px 10px;
+  border:1.25px solid #E3A678;
+  border-radius:10px;
+  margin-bottom:6px;
+  background:#faf7f5;
+}
+
+.save-btn{
+  background:#154D71;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:1.07rem;
+  cursor:pointer;
+  font-weight:700;
+}
+.save-btn:hover{ background:#E3A678; color:#154D71; }
+
+/* ---------- Modal ---------- */
+.modal{ display:none; position:fixed; inset:0; background:rgba(21,77,113,.1); backdrop-filter:blur(4px); }
+.modal-content{
+  background:#fff;
+  border-radius:18px;
+  max-width:320px;
+  margin:6.5% auto;
+  padding:26px 24px 18px 24px;
+  box-shadow:0 12px 34px rgba(0,0,0,.15);
+  position:relative;
+}
+.close{ position:absolute; right:22px; top:14px; color:#E3A678; font-size:1.3rem; font-weight:900; cursor:pointer; }
+
+/* ---------- Lists ---------- */
+#eventList,#upcomingEvents{ list-style:none; padding:0; margin:8px 0 0 0; }
+#eventList li,#upcomingEvents li{
+  background:#F3E2D4;
+  border-radius:10px;
+  margin-bottom:6px;
+  padding:9px 12px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px;
+}
+.no-events{ color:#999; font-style:italic; background:none!important; border:none!important; padding:0!important; }
+.upcoming-section{ margin-top:22px; border-top:1.5px dashed #ececec; padding-top:14px; }
+.upcoming-header{ display:flex; justify-content:space-between; align-items:center; }
+.filter-dropdown{ border:1.25px solid #E3A678; border-radius:8px; background:#fff; padding:4px 9px; }
+
+/* Edit/Delete small buttons */
+/* === tiny icon buttons === */
+.event-actions { display:flex; gap:6px; }
+
+.btn-icon{
+  border:none;
+  cursor:pointer;
+  border-radius:8px;
+  padding:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+}
+
+.btn-icon svg{ width:16px; height:16px; stroke-width:2; }
+
+.btn-edit svg{ stroke:#0b62cf; }     /* pencil */
+.btn-delete svg{ stroke:#c62828; }   /* bin in red */
+
+.btn-icon:hover{ filter:brightness(.95); }
+
