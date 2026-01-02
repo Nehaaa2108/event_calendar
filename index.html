@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Calendar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts & Flatpickr -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nata+Sans:wght@100..900&family=Pacifico&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header-section">
+    <h1 class="nata-sans-header event-heading">EVENT CALENDAR</h1>
+  </header>
+
+  <main class="calendar-container">
+    <div class="calendar-card">
+      <div class="calendar-header">
+        <button id="prevMonth" aria-label="Previous Month">&#60;</button>
+        <span id="monthYear"></span>
+        <button id="nextMonth" aria-label="Next Month">&#62;</button>
+      </div>
+
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+          </tr>
+        </thead>
+        <tbody id="calendarBody"></tbody>
+      </table>
+
+      <button id="addEventBtn" class="nata-sans-button add-event-btn">Add Event</button>
+
+      <!-- Add/Edit Modal -->
+      <div id="eventModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+          <span class="close" id="closeModal" aria-label="Close">&times;</span>
+          <h3 class="nata-sans-header" id="modalTitle">Add Event</h3>
+          <form id="eventForm">
+            <input type="text" id="eventTitle" class="nata-sans-input" placeholder="Event Title (required)" required />
+            <input type="date" id="eventDate" class="nata-sans-input" required />
+            <input type="text" id="eventTime" class="nata-sans-input" placeholder="Select Time (optional)" />
+            <input type="hidden" id="editingId" />
+            <button type="submit" class="nata-sans-button save-btn" id="saveBtn">Save</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Events for selected date -->
+      <div class="events-section">
+        <h4 class="nata-sans-header">Events on <span id="selectedDateLabel"></span></h4>
+        <ul id="eventList"></ul>
+      </div>
+
+      <!-- Upcoming / All events -->
+      <div class="upcoming-section">
+        <div class="upcoming-header">
+          <span class="nata-sans-header">Events List</span>
+          <select id="eventFilter" class="nata-sans-input filter-dropdown">
+            <option value="today">Current Date</option>
+            <option value="current-month">Current Month</option>
+            <option value="next-month">Next Month</option>
+            <option value="all" selected>All Events</option>
+          </select>
+        </div>
+        <ul id="upcomingEvents"></ul>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="script.js"></script>
+</body>
+</html>
